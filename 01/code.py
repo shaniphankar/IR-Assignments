@@ -2,12 +2,17 @@ import sqlite3
 import numpy as np
 
 
-def main()
+def main():
 	conn=sqlite3.connect('01/database.sqlite')
 	c=conn.cursor()
 	query="""select name from sqlite_master where type = 'table';"""
 	c.execute(query)
 	print(c.fetchall())
+	#It contatins 1 table called Reviews
+	query="""select * from Reviews limit 5"""
+	c.execute(query)
+	print(c.fetchall())
+	
 
 if __name__ == '__main__':
 	main()
