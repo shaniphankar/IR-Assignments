@@ -15,8 +15,10 @@ def main():
 		for x in objects:
 			pp=pprint.PrettyPrinter(indent=4)
 			tokens=nltk.word_tokenize(x['text'])
-			tokens=[word for word in tokens if word.isalpha()]
+			tokens=[word.lower() for word in tokens if word.isalpha()]
 			stop_words=stopwords.words('english')
+			#print(stop_words)
+			#print(tokens)
 			tokens=[word for word in tokens if not(word in stop_words)]
 			print(tokens)
 			#print(stop_words)
