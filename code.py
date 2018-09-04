@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import nltk
+from nltk.stem.porter import PorterStemmer
 from nltk.corpus import stopwords
 import json 
 from itertools import islice
@@ -10,7 +11,7 @@ def main():
 	with(open(os.getcwd()+'/yelp-dataset/yelp_academic_dataset_review.json')) as f:
 		objects =(json.loads(line) for line in f)
 		print(objects)
-		reviews=[{}]
+		reviews={}
 		i=0
 		for x in objects:
 			pp=pprint.PrettyPrinter(indent=4)
@@ -20,11 +21,12 @@ def main():
 			#print(stop_words)
 			#print(tokens)
 			tokens=[word for word in tokens if not(word in stop_words)]
-			print(tokens)
+			porter=PorterStemmer()
+			tokens=[porter.stem(word) for word in tokens]
 			#print(stop_words)
 			#print(tokens)
-			#reviews.append({'business':x['business_id'],'stars':x['stars'],'text':x['text']})
-			#print(reviews[i])
+			reviews[x['review_id']]={'business':x['business_id'],'stars':x['stars'],'text':tokens}
+			print(reviews)
 			i+=1
 			#pp.pprint(reviews)
 
