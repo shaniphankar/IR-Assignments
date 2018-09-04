@@ -17,7 +17,8 @@ def main():
 			tokens=nltk.word_tokenize(x['text'])
 			tokens=[word for word in tokens if word.isalpha()]
 			stop_words=stopwords.words('english')
-			tokens=[word for word in tokens if not(word.]
+			tokens=[word for word in tokens if not(word in stop_words)]
+			print(tokens)
 			#print(stop_words)
 			#print(tokens)
 			#reviews.append({'business':x['business_id'],'stars':x['stars'],'text':x['text']})
