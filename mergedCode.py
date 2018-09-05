@@ -10,7 +10,7 @@ import os
 import pickle
 import math
 
-def calc(tfval,dfval,number)
+def calc(tfval,dfval,number):
 	return (1+math.log(tfval))*(math.log(number/dfval))
 
 def tf_idf(reviews):
@@ -32,7 +32,6 @@ def tf_idf(reviews):
 					tf_doc[word]=tf_doc[word]+1
 
 				tf_overall[document][word]=tf_doc[word] #Adding the list of word:freq dictionaries
-	
 	tf_idf={}
 	number=len(document)
 	for document,content in reviews.items():
@@ -44,21 +43,32 @@ def tf_idf(reviews):
 				tf_idf_doc[word]=val
 				tf_idf[document][word]=tf_idf_doc[word]
 
-	return tf_idf
+	print(tf_idf)
+	#return tf_idf
+
+def score_query(query_tokens,tf_idf_store):
+	query_score={}
+	for document,content in tf_idf_store.items():
+		query_score[document]=0
+		for word in query_tokens:
+			if word in content['text']:
+				query_score+=(tf_idf_store.get(document)).get(word)
+	return query_score
 
 def main():
 	with(open(os.getcwd()+'/yelp-dataset/yelp_academic_dataset_review.json')) as f:
 		objects =(json.loads(line) for line in f)
-		print(objects)
+		#print(objects)
 		reviews={}
+		tf_idf_store={}
+		pp=pprint.PrettyPrinter(indent=4)
+		stop_words=stopwords.words('english')
 		wordnet_lemmatizer=WordNetLemmatizer()
 		i=0
 		for x in objects:
-			pp=pprint.PrettyPrinter(indent=4)
 			tokens=nltk.word_tokenize(x['text'])
 			tokens=[word.lower() for word in tokens if word.isalpha()]
 			numWords=len(tokens)
-			stop_words=stopwords.words('english')
 			#print(stop_words)
 			#print(tokens)
 			tokens=[word for word in tokens if not(word in stop_words)]
@@ -67,11 +77,17 @@ def main():
 			#print(tokens)
 			reviews[x['review_id']]={'business':x['business_id'],'numWords':numWords,'stars':x['stars'],'text':tokens}
 			i+=1
-			tf_idf(reviews)
 			#pp.pprint(reviews)
-		with open('id_tokens_mappings.pickle', 'wb') as handle:
-			pickle.dump(reviews, handle, protocol=pickle.HIGHEST_PROTOCOL)
-		
+		# with open('id_tokens_mappings.pickle', 'wb') as handle:
+		# 	pickle.dump(reviews, handle, protocol=pickle.HIGHEST_PROTOCOL)
+		tf_idf_store=tf_idf(reviews)		
+		query=input("enter your query please")
+		query_tokens=nltk.word_tokenize(query)
+		query_tokens=[word.lower() for word in query_tokens if word.isalpha()]
+		query_tokens=[word for word in query_tokens if not(word in stop_words)]
+		query_tokens=[wordnet_lemmatizer.lemmatize(word) for word in query_tokens]
+		score_query(query_tokens,tf_idf_store)
 
+		
 if __name__ == '__main__':
 	main()
