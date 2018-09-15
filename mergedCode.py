@@ -9,6 +9,7 @@ import pprint
 import os
 import pickle
 import math
+import heapq
 
 def calc(tfval,dfval,number):
 	return (1+math.log(tfval))*(math.log(number/dfval))
@@ -43,17 +44,23 @@ def tf_idf(reviews):
 				tf_idf_doc[word]=val
 				tf_idf[document][word]=tf_idf_doc[word]
 
-	print(tf_idf)
-	#return tf_idf
+	#print(tf_idf)
+	return tf_idf
 
 def score_query(query_tokens,tf_idf_store):
-	query_score={}
+    queue=[]
 	for document,content in tf_idf_store.items():
-		query_score[document]=0
+		score=0
 		for word in query_tokens:
-			if word in content['text']:
-				query_score+=(tf_idf_store.get(document)).get(word)
-	return query_score
+			if word in content:
+				score+=(tf_idf_store[document][word]
+		if(len(queue)<41):
+		    heapq.heappush(queue,(score,document))
+		elif queue[0][0]<score:
+		    heapq.heappop(queue)
+		    heapq.heappush(queue,(score,document))
+		    
+	return queue
 
 def main():
 	with(open(os.getcwd()+'/yelp-dataset/yelp_academic_dataset_review.json')) as f:
