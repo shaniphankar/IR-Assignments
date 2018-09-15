@@ -51,13 +51,16 @@ def tf_idf(reviews):
 	#print(tf_idf)
 	return tf_idf
 
-def score_query(query_tokens,tf_idf_store):
+def score_query(query_tokens,tf_idf_store,reviews):
 	queue=[]
+	query_length=len(query_tokens)
 	for document,content in tf_idf_store.items():
 		score=0
 		for word in query_tokens:
 			if word in content:
 				score+=tf_idf_store[document][word]
+		
+		score=score/(size_doc*query_length)
 		if len(queue)<41:
 			heapq.heappush(queue,(score,document))
 		elif queue[0][0]<score:
