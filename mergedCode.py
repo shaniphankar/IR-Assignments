@@ -11,7 +11,7 @@ import pickle
 import math
 import heapq
 
-def calc(tfval,dfval,number):
+def calc_TF_IDF(tfval,dfval,number):
 	return (1+math.log(tfval))*(math.log(number/dfval))
 
 def tf_idf(reviews):
@@ -40,7 +40,7 @@ def tf_idf(reviews):
 			tf_idf[document]={} #mapping each tf_idf to the corresponding document
 			tf_idf_doc={} #give the tf_idf for each word in a document
 			for word in content['text']:
-				val=calc(tf_overall[document][word],df[word],number)
+				val=calc_TF_IDF(tf_overall[document][word],df[word],number)
 				tf_idf_doc[word]=val
 				tf_idf[document][word]=tf_idf_doc[word]
 
