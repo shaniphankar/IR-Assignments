@@ -39,6 +39,7 @@ def main():
 		i=0
 		for x in objects:
 			pp=pprint.PrettyPrinter(indent=4)
+<<<<<<< HEAD
 			pp.pprint(x)
 		# 	tokens=nltk.word_tokenize(x['text'])
 		# 	tokens=[word.lower() for word in tokens if word.isalpha()]
@@ -56,6 +57,24 @@ def main():
 		# 	#pp.pprint(reviews)
 		# with open('id_tokens_mappings.pickle', 'wb') as handle:
 		# 	pickle.dump(reviews, handle, protocol=pickle.HIGHEST_PROTOCOL)
+=======
+			tokens=nltk.word_tokenize(x['text'])
+			tokens=[word.lower() for word in tokens if word.isalpha()]
+			numWords=len(tokens)
+			stop_words=stopwords.words('english')
+			#print(stop_words)
+			#print(tokens)
+			tokens=[word for word in tokens if not(word in stop_words)]
+			tokens=[wordnet_lemmatizer.lemmatize(word) for word in tokens]
+			#print(stop_words)
+			#print(tokens)
+			reviews[x['review_id']]={'business':x['business_id'],'numWords':numWords,'stars':x['stars'],'text':tokens}
+			i+=1
+			tf_idf(reviews)
+			#pp.pprint(reviews)
+		with open('id_tokens_mappings.pickle', 'wb') as handle:
+			pickle.dump(reviews, handle, protocol=pickle.HIGHEST_PROTOCOL)
+>>>>>>> 2fa942d77c66a3e6c90467a719aeefd2aa4ad9e7
 		
 
 if __name__ == '__main__':
