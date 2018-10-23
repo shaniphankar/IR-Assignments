@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module finalCode</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>finalCode</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/cross/GUI/app/finalCode.py">/home/cross/GUI/app/finalCode.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="heapq.html">heapq</a><br>
+<a href="json.html">json</a><br>
+<a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top><a href="math.html">math</a><br>
+<a href="nltk.html">nltk</a><br>
+<a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="pickle.html">pickle</a><br>
+<a href="pprint.html">pprint</a><br>
+</td><td width="25%" valign=top><a href="shelve.html">shelve</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-BM25Score"><strong>BM25Score</strong></a>(query_tokens, tf_idf_store, reviews, num_docs, avg_doc_length, doc_freq)</dt><dd><tt>This&nbsp;function&nbsp;gives&nbsp;the&nbsp;documents&nbsp;with&nbsp;the&nbsp;top&nbsp;40&nbsp;BM25&nbsp;values<br>
+query_tokens:&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;tokens&nbsp;present&nbsp;within&nbsp;the&nbsp;query<br>
+tf_idf_store:&nbsp;is&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;dictionaries&nbsp;that&nbsp;contains&nbsp;the&nbsp;mapping&nbsp;of&nbsp;documents&nbsp;and&nbsp;the&nbsp;word:freq(word)&nbsp;within&nbsp;the&nbsp;document<br>
+reviews:&nbsp;a&nbsp;dictionary&nbsp;that&nbsp;stores&nbsp;the&nbsp;document_id&nbsp;and&nbsp;related&nbsp;attributes<br>
+avg_doc_length:&nbsp;average&nbsp;length&nbsp;of&nbsp;each&nbsp;document<br>
+doc_freq:&nbsp;It&nbsp;is&nbsp;the&nbsp;dictionary&nbsp;that&nbsp;contains&nbsp;the&nbsp;document&nbsp;frequency&nbsp;for&nbsp;each&nbsp;word</tt></dd></dl>
+ <dl><dt><a name="-IDF_alter"><strong>IDF_alter</strong></a>(num_docs, doc_freq, token)</dt><dd><tt>This&nbsp;function&nbsp;gives&nbsp;back&nbsp;the&nbsp;idf&nbsp;value&nbsp;for&nbsp;a&nbsp;given&nbsp;word<br>
+num_docs:gives&nbsp;the&nbsp;number&nbsp;of&nbsp;documents&nbsp;present&nbsp;within&nbsp;the&nbsp;corpus<br>
+doc_freq:gives&nbsp;the&nbsp;document&nbsp;frequency&nbsp;for&nbsp;a&nbsp;given&nbsp;word<br>
+token:is&nbsp;the&nbsp;token&nbsp;for&nbsp;which&nbsp;the&nbsp;inverse&nbsp;document&nbsp;frequency&nbsp;is&nbsp;to&nbsp;be&nbsp;found</tt></dd></dl>
+ <dl><dt><a name="-calc_TF_IDF"><strong>calc_TF_IDF</strong></a>(tfval, dfval, number)</dt><dd><tt>returns&nbsp;the&nbsp;tf_idf</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><tt>This&nbsp;function&nbsp;lemmatizes&nbsp;and&nbsp;normalizes&nbsp;all&nbsp;the&nbsp;words&nbsp;found&nbsp;in&nbsp;the&nbsp;corpus,&nbsp;and&nbsp;then&nbsp;calls&nbsp;the&nbsp;appropriate&nbsp;function&nbsp;to&nbsp;get&nbsp;tf_idf&nbsp;and&nbsp;BM25&nbsp;scores.&nbsp;Then&nbsp;it&nbsp;takes&nbsp;the&nbsp;query&nbsp;and&nbsp;prints&nbsp;out&nbsp;the&nbsp;list&nbsp;of&nbsp;documents&nbsp;from&nbsp;both&nbsp;the&nbsp;algorithms.&nbsp;First&nbsp;the&nbsp;tf_idf&nbsp;sorted&nbsp;docs&nbsp;are&nbsp;printed&nbsp;followed&nbsp;by&nbsp;BM25&nbsp;rated&nbsp;docs</tt></dd></dl>
+ <dl><dt><a name="-score_query"><strong>score_query</strong></a>(query_tokens, tf_idf_store, reviews)</dt><dd><tt>finds&nbsp;the&nbsp;tf_idf&nbsp;score</tt></dd></dl>
+ <dl><dt><a name="-tf_idf"><strong>tf_idf</strong></a>(reviews)</dt><dd><tt>This&nbsp;function&nbsp;takes&nbsp;a&nbsp;review&nbsp;as&nbsp;input&nbsp;and&nbsp;gives&nbsp;the&nbsp;tf_idf&nbsp;of&nbsp;each&nbsp;word&nbsp;for&nbsp;each&nbsp;document&nbsp;as&nbsp;the&nbsp;output</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>stopwords</strong> = &lt;WordListCorpusReader in '.../corpora/stopwords' (not loaded yet)&gt;</td></tr></table>
+</body></html>
